@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { tap, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
+import { environment } from '../../environments/environment';
+import { IExhibitResponse, IExhibitsRespose } from '../models/exhibits';
 
 @Injectable({
   providedIn: 'root'
@@ -8,12 +12,10 @@ import { map } from 'rxjs/operators';
 export class ExhibitsService {
   constructor(private http: HttpClient) { }
 
-  get() {
-    return this.http.get('http://localhost:3000/exhibits').pipe(
-      map(res => {
-        console.log('res', res);
-        return res;
-      })
+  get(): Observable<IExhibitResponse[]> {
+    return this.http.get<IExhibitsRespose>(`${environment.baseUrl}/exhibits`).pipe(
+      tap(response => console.log('response', response)),
+      map(response => response.objects)
     );
   }
 }

@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
 const app = express();
+const localtunnel = require('localtunnel');
 
 app.use(cors());
 
@@ -36,7 +37,7 @@ app.get('/exhibits', async (req, res) => {
     countsType: 0,
     sortDir: 'desc',
     imageExists: true,
-    limit: 10,
+    limit: 2000,
     offset: 0,
     sortBy: 'id',
   };
@@ -60,3 +61,17 @@ app.get('/exhibits', async (req, res) => {
 app.listen(3000, () => {
   console.log('Example app listening on port 3000!');
 });
+
+(async () => {
+  const tunnel = await localtunnel(3000, { subdomain: 'catalog'}, (error, tunnel) => {
+    if (error) {
+      console.log('Error!', error);
+    } else {
+      console.log('Tunnel url is: ', tunnel.url);
+    }
+  });
+
+  tunnel.on('close', () => {
+    console.log('tunnels are closed');
+  });
+})();

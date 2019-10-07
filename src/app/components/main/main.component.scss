@@ -51,7 +51,7 @@ p {
   display: flex;
   margin: 32px auto;
   padding: 0 16px;
-  max-width: 960px;
+  max-width: 100%;
   flex-direction: column;
   align-items: center;
 }
@@ -115,4 +115,27 @@ a:hover {
   .card.highlight-card span {
     margin-left: 72px;
   }
+}
+
+.exhibits {
+  width: 100%;
+  margin-top: 15px;
+  text-align: center;
+
+  .search {
+    width: 300px;
+  }
+
+  .date {
+    min-width: fit-content;
+  }
+}
+
+mat-header-cell,
+mat-cell {
+  justify-content: center;
+}
+
+mat-cell {
+  padding: 0 5px;
 }

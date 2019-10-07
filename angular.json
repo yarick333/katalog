@@ -25,9 +25,10 @@
             "aot": false,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets/config/config.json"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -38,6 +39,11 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "src/assets/config/config.json",
+                  "with": "src/assets/config/config.prod.json"
+
                 }
               ],
               "optimization": true,
@@ -93,6 +99,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -124,6 +131,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "katalog"
 }
